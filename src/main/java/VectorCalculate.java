@@ -1,5 +1,6 @@
 // import java.util.Comparator;
 import java.util.Arrays;
+import java.util.List;
 
 public class VectorCalculate{
     public static double dot(Vector a, Vector b){
@@ -61,14 +62,29 @@ public class VectorCalculate{
     }
 
     public static Vector[] vectorSort(Vector[] arr){
-        Vector[] a = new Vector[arr.length];
-        for(int i = 0; i < a.length; i++){
-            a[i] = arr[i];
-        }
-        Vector cend = new Vector(centroid(a));
-        Vector basic = new Vector(a[0].sub(cend));
-        Arrays.sort(a, new MyComparator(basic, cend));
-        return a;
+        // Vector[] a = new Vector[arr.length];
+        // for(int i = 0; i < a.length; i++){
+        //     a[i] = arr[i];
+        // }
+        // Vector cend = new Vector(centroid(a));
+        // Vector basic = new Vector(a[0].sub(cend));
+        // Arrays.sort(a, new MyComparator(basic, cend));
+        // return a;
+        List<Vector> v = Arrays.asList(arr);
+        v.sort((o1, o2)->{
+            Vector cend = centroid(arr);
+            Vector basis = arr[0].sub(cend);
+            if(angle(basis, o1.sub(cend)) - angle(basis, o2.sub(cend)) <= 0){
+                return -1;
+            }else if(angle(basis, o1.sub(cend)) - angle(basis, o2.sub(cend)) >= 0){
+                return 1;
+            }else{
+                return 0;
+            }
+        });
+        Vector[] result = new Vector[v.size()];
+        result = v.toArray(result);
+        return result;
     }
 
     public static double area(Vector[] arr){
