@@ -62,29 +62,30 @@ public class VectorCalculate{
     }
 
     public static Vector[] vectorSort(Vector[] arr){
-        // Vector[] a = new Vector[arr.length];
-        // for(int i = 0; i < a.length; i++){
-        //     a[i] = arr[i];
-        // }
-        // Vector cend = new Vector(centroid(a));
-        // Vector basic = new Vector(a[0].sub(cend));
-        // Arrays.sort(a, new MyComparator(basic, cend));
-        // return a;
-        List<Vector> v = Arrays.asList(arr);
-        v.sort((o1, o2)->{
+        /*用array來排序 */
+        Vector[] a = new Vector[arr.length];
+        for(int i = 0; i < a.length; i++){
+            a[i] = arr[i];
+        }
+        // Vector cend = new Vector(centroid(arr));
+        // Vector basic = new Vector(arr[0].sub(cend));
+        Arrays.sort(a, (o1, o2)->{
             Vector cend = centroid(arr);
             Vector basis = arr[0].sub(cend);
-            if(angle(basis, o1.sub(cend)) <= angle(basis, o2.sub(cend))){
-                return -1;
-            }else if(angle(basis, o1.sub(cend)) <= angle(basis, o2.sub(cend))){
-                return 1;
-            }else{
-                return 0;
-            }
+            return (int)(angle(basis, o1.sub(cend)) - angle(basis, o2.sub(cend)));
         });
-        Vector[] result = new Vector[v.size()];
-        result = v.toArray(result);
-        return result;
+        return a;
+
+        /*用list來排序 */
+        // List<Vector> v = Arrays.asList(arr);
+        // v.sort((o1, o2)->{
+        //     Vector cend = centroid(arr);
+        //     Vector basis = arr[0].sub(cend);
+        //     return (int)(angle(basis, o1.sub(cend)) - angle(basis, o2.sub(cend)));
+        // });
+        // Vector[] result = new Vector[v.size()];
+        // result = v.toArray(result);
+        // return result;
     }
 
     public static double area(Vector[] arr){
