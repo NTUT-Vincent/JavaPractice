@@ -74,9 +74,9 @@ public class VectorCalculate{
         v.sort((o1, o2)->{
             Vector cend = centroid(arr);
             Vector basis = arr[0].sub(cend);
-            if(angle(basis, o1.sub(cend)) - angle(basis, o2.sub(cend)) <= 0){
+            if(angle(basis, o1.sub(cend)) <= angle(basis, o2.sub(cend))){
                 return -1;
-            }else if(angle(basis, o1.sub(cend)) - angle(basis, o2.sub(cend)) >= 0){
+            }else if(angle(basis, o1.sub(cend)) <= angle(basis, o2.sub(cend))){
                 return 1;
             }else{
                 return 0;

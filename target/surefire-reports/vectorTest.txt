@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: vectorTest
 -------------------------------------------------------------------------------
-Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.042 s - in vectorTest
+Tests run: 20, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in vectorTest
